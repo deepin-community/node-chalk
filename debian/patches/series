@@ -1,0 +1,2 @@
+replace-ava-by-tape.diff
+disable-test-that-require-term.diff

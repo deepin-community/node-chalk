@@ -1,0 +1,42 @@
+#!/bin/sh
+
+set -e
+#set -x
+
+component=""
+version="$2"
+tarball="$3"
+
+if [ "" != "$4" -a "--upstream-version" = "$2" ]; then
+  component="$1"
+  version="$3"
+  tarball="$4"
+fi
+source=`basename "$tarball"`
+source="${source%_*.orig.*}"
+dir="debian/$source"
+if [ "" != "$component" ]; then
+  ### specific code for modules listed in package.json - Build-Depends nodejs, semver
+  # assume $component is node_modules/$module
+  module="${component#node_modules/}"
+  expectedVersion=$(nodejs -e "console.log(require('./package').dependencies['$module'])")
+  allowedVersion=`semver $version -r $expectedVersion || true`
+  if [ "${allowedVersion}" = "" ]; then
+    echo "\n\n********** WARNING **********\n$component $version is not compatible with $expectedVersion\nPlease update debian/watch, see debian/README.source\n*****************************\n"
+  fi
+  ### end of specific code ###
+  cmpdir="$dir/$component"
+  mkdir -p $cmpdir
+  # extract tarball into component
+  tar --strip-components=1 -C "$cmpdir" -xvf "$tarball"
+  rm "$tarball"
+else
+  mkdir -p $dir
+  tar --strip-components=1 -C $dir -xvf "$tarball"
+  rm "$tarball"
+  bundle="$(dirname $tarball)/$source-$version.tar.gz"
+  tar czvf "$bundle" -C "./debian" "$source"
+  # in case debian/copyright contains a Files-Excluded section
+  mk-origtargz -v "$version" "$bundle"
+  rm -rf "$dir"
+fi

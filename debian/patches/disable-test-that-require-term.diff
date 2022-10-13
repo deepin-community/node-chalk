@@ -1,0 +1,35 @@
+Description: disable color tests
+Author: Xavier Guimard <yadd@debian.org>
+Forwarded: not-needed
+Last-Update: 2020-11-18
+
+--- a/test/chalk.js
++++ b/test/chalk.js
+@@ -18,6 +18,7 @@
+ 	t.end();
+ });
+ 
++/*
+ test('support automatic casting to string', t => {
+ 	t.is(chalk(['hello', 'there']), 'hello,there');
+ 	t.is(chalk(123), '123');
+@@ -139,3 +140,4 @@
+ 	t.is(chalk.stderr.red.bold('foo'), '\u001B[31m\u001B[1mfoo\u001B[22m\u001B[39m');
+ 	t.end();
+ });
++*/
+--- a/test/instance.js
++++ b/test/instance.js
+@@ -8,9 +8,9 @@
+ test('create an isolated context where colors can be disabled (by level)', t => {
+ 	const instance = new chalk.Instance({level: 0});
+ 	t.is(instance.red('foo'), 'foo');
+-	t.is(chalk.red('foo'), '\u001B[31mfoo\u001B[39m');
+-	instance.level = 2;
+-	t.is(instance.red('foo'), '\u001B[31mfoo\u001B[39m');
++	//t.is(chalk.red('foo'), '\u001B[31mfoo\u001B[39m');
++	//instance.level = 2;
++	//t.is(instance.red('foo'), '\u001B[31mfoo\u001B[39m');
+ 	t.end();
+ });
+ 

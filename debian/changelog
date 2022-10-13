@@ -1,0 +1,122 @@
+node-chalk (4.1.2-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Yadd ]
+  * Fix GitHub tags regex
+
+  [ Ayoyimika Ajibade ]
+  * New upstream version 4.1.2
+
+  [ Yadd ]
+  * Fix filenamemangle
+  * Declare compliance with policy 4.6.0
+  * Drop unneeded dependency version constraint
+
+ -- Ayoyimika Ajibade <ayoyimikaajibade@gmail.com>  Tue, 02 Nov 2021 13:29:51 +0100
+
+node-chalk (4.1.0-1) unstable; urgency=medium
+
+  * Team upload
+  * Declare compliance with policy 4.5.1
+  * New upstream version 4.1.0
+  * Refresh patches
+
+ -- Xavier Guimard <yadd@debian.org>  Wed, 18 Nov 2020 18:42:47 +0100
+
+node-chalk (4.0.0-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Debian Janitor ]
+  * Remove obsolete field Name from debian/upstream/metadata (already
+    present in machine-readable debian/copyright).
+  * Update standards version to 4.5.0, no changes needed.
+
+  [ Xavier Guimard ]
+  * Add "Rules-Requires-Root: no"
+  * New upstream version 4.0.0 (Closes: #974842)
+  * Update test (use tape)
+  * Bump debhelper compatibility level to 13
+  * Modernize debian/watch
+  * Use dh-sequence-nodejs
+  * Install examples
+
+ -- Xavier Guimard <yadd@debian.org>  Mon, 16 Nov 2020 11:42:15 +0100
+
+node-chalk (2.4.2-1) unstable; urgency=medium
+
+  [ Nilesh ]
+  * Team Upload.
+  * New upstream version 2.4.2
+  * Remove install file
+  * Modify patch to fix syntax
+  * Bump debhelper version to 12
+  * Bump standards version to 4.4.0
+
+ -- Nilesh <npatra974@gmail.com>  Fri, 30 Aug 2019 23:01:27 -0700
+
+node-chalk (2.3.0-2) unstable; urgency=medium
+
+  * Team upload
+  * Tighten build dependencies
+  * Bump debhelper compatibility level to 11
+  * Use salsa.debian.org in Vcs-* fields
+  * Bump Standards-Version to 4.2.1 (no changes needed)
+
+ -- Pirate Praveen <praveen@debian.org>  Sun, 09 Sep 2018 19:35:27 +0530
+
+node-chalk (2.3.0-1) unstable; urgency=medium
+
+  * Team upload
+  [ Pirate Praveen ]
+  * New upstream release
+  * Drop all patches (tests are disabled as it needs ava)
+  [ Paolo Greppi ]
+  * Refresh debian/control, install and watch
+
+ -- Pirate Praveen <praveen@debian.org>  Tue, 31 Oct 2017 00:34:22 +0530
+
+node-chalk (1.1.3-2) unstable; urgency=medium
+
+  [ Paolo Greppi ]
+  * Team upload.
+  * Get rid of build dependencies required for testing only on Windows
+    and enable tests during build & autopkgtest.
+  * enable tests during packaging
+  * enable chalk
+
+  [ Mathias Behrle ]
+  * Fix quilt-patch-missing-description 01-test_enabled.diff by provding
+    proper DEP3 headers.
+  * Add missing build depends for the enabled tests.
+
+ -- Mathias Behrle <mbehrle@debian.org>  Fri, 02 Dec 2016 12:16:44 +0100
+
+node-chalk (1.1.3-1) unstable; urgency=low
+
+  [ Bas Couwenberg ]
+  * Enable mocha test.
+  * Remove myself from Uploaders.
+
+  [ Mathias Behrle ]
+  * Imported Upstream version 1.1.3
+  * Disabling tests, require-uncached and resolve-from are currently not
+    available.
+  * Removing unused Build-Depends.
+  * Removing versioned Depends.
+  * Using secure URIs in the VCS fields.
+  * Removing XS-Testsuite, no more needed.
+  * Updating to Standards-Version 3.9.8, no changes needed.
+  * Adding myself to Uploaders.
+  * Adding myself to debian copyright.
+  * Running wrap-and-sort -sta.
+  * Upload to unstable (Closes: #753410).
+
+ -- Mathias Behrle <mbehrle@debian.org>  Mon, 18 Jul 2016 18:05:40 +0200
+
+node-chalk (1.0.0-1) UNRELEASED; urgency=low
+
+  * Initial release (Closes: #753410)
+
+ -- Bas Couwenberg <sebastic@debian.org>  Tue, 17 Mar 2015 22:00:15 +0100
