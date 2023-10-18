@@ -1,62 +1,49 @@
-import {expectType, expectError} from 'tsd';
-import chalk = require('.');
-
-// - Helpers -
-type colorReturn = chalk.Chalk & {supportsColor?: never};
+import {expectType, expectAssignable, expectError, expectDeprecated} from 'tsd';
+import chalk, {
+	Chalk, ChalkInstance, ColorInfo, ColorSupport, ColorSupportLevel, chalkStderr, supportsColor, supportsColorStderr,
+	ModifierName, ForegroundColorName, BackgroundColorName, ColorName,
+	Modifiers,
+} from './index.js';
 
 // - supportsColor -
-expectType<chalk.ColorSupport | false>(chalk.supportsColor);
-if (chalk.supportsColor) {
-	expectType<boolean>(chalk.supportsColor.hasBasic);
-	expectType<boolean>(chalk.supportsColor.has256);
-	expectType<boolean>(chalk.supportsColor.has16m);
+expectType<ColorInfo>(supportsColor);
+if (supportsColor) {
+	expectType<ColorSupport>(supportsColor);
+	expectType<ColorSupportLevel>(supportsColor.level);
+	expectType<boolean>(supportsColor.hasBasic);
+	expectType<boolean>(supportsColor.has256);
+	expectType<boolean>(supportsColor.has16m);
 }
 
 // - stderr -
-expectType<chalk.Chalk>(chalk.stderr);
-expectType<chalk.ColorSupport | false>(chalk.stderr.supportsColor);
-if (chalk.stderr.supportsColor) {
-	expectType<boolean>(chalk.stderr.supportsColor.hasBasic);
-	expectType<boolean>(chalk.stderr.supportsColor.has256);
-	expectType<boolean>(chalk.stderr.supportsColor.has16m);
+expectAssignable<ChalkInstance>(chalkStderr);
+expectType<ColorInfo>(supportsColorStderr);
+if (supportsColorStderr) {
+	expectType<boolean>(supportsColorStderr.hasBasic);
+	expectType<boolean>(supportsColorStderr.has256);
+	expectType<boolean>(supportsColorStderr.has16m);
 }
 
-// -- `stderr` is not a member of the Chalk interface --
-expectError(chalk.reset.stderr);
+// -- `supportsColorStderr` is not a member of the Chalk interface --
+expectError(chalk.reset.supportsColorStderr);
 
 // -- `supportsColor` is not a member of the Chalk interface --
 expectError(chalk.reset.supportsColor);
 
 // - Chalk -
 // -- Instance --
-expectType<chalk.Chalk>(new chalk.Instance({level: 1}));
+expectType<ChalkInstance>(new Chalk({level: 1}));
 
 // -- Properties --
-expectType<chalk.Level>(chalk.level);
-
-// -- Template literal --
-expectType<string>(chalk``);
-const name = 'John';
-expectType<string>(chalk`Hello {bold.red ${name}}`);
-expectType<string>(chalk`Works with numbers {bold.red ${1}}`);
+expectType<ColorSupportLevel>(chalk.level);
 
 // -- Color methods --
-expectType<colorReturn>(chalk.hex('#DEADED'));
-expectType<colorReturn>(chalk.keyword('orange'));
-expectType<colorReturn>(chalk.rgb(0, 0, 0));
-expectType<colorReturn>(chalk.hsl(0, 0, 0));
-expectType<colorReturn>(chalk.hsv(0, 0, 0));
-expectType<colorReturn>(chalk.hwb(0, 0, 0));
-expectType<colorReturn>(chalk.ansi(30));
-expectType<colorReturn>(chalk.ansi256(0));
-expectType<colorReturn>(chalk.bgHex('#DEADED'));
-expectType<colorReturn>(chalk.bgKeyword('orange'));
-expectType<colorReturn>(chalk.bgRgb(0, 0, 0));
-expectType<colorReturn>(chalk.bgHsl(0, 0, 0));
-expectType<colorReturn>(chalk.bgHsv(0, 0, 0));
-expectType<colorReturn>(chalk.bgHwb(0, 0, 0));
-expectType<colorReturn>(chalk.bgAnsi(30));
-expectType<colorReturn>(chalk.bgAnsi256(0));
+expectType<ChalkInstance>(chalk.rgb(0, 0, 0));
+expectType<ChalkInstance>(chalk.hex('#DEADED'));
+expectType<ChalkInstance>(chalk.ansi256(0));
+expectType<ChalkInstance>(chalk.bgRgb(0, 0, 0));
+expectType<ChalkInstance>(chalk.bgHex('#DEADED'));
+expectType<ChalkInstance>(chalk.bgAnsi256(0));
 
 // -- Modifiers --
 expectType<string>(chalk.reset('foo'));
@@ -64,6 +51,7 @@ expectType<string>(chalk.bold('foo'));
 expectType<string>(chalk.dim('foo'));
 expectType<string>(chalk.italic('foo'));
 expectType<string>(chalk.underline('foo'));
+expectType<string>(chalk.overline('foo'));
 expectType<string>(chalk.inverse('foo'));
 expectType<string>(chalk.hidden('foo'));
 expectType<string>(chalk.strikethrough('foo'));
@@ -157,6 +145,20 @@ expectType<string>(chalk.underline``);
 expectType<string>(chalk.red.bgGreen.bold`Hello {italic.blue ${name}}`);
 expectType<string>(chalk.strikethrough.cyanBright.bgBlack`Works with {reset {bold numbers}} {bold.red ${1}}`);
 
-// -- Color types ==
-expectType<typeof chalk.Color>('red');
-expectError<typeof chalk.Color>('hotpink');
+// -- Modifiers types
+expectAssignable<ModifierName>('strikethrough');
+expectError<ModifierName>('delete');
+
+// -- Foreground types
+expectAssignable<ForegroundColorName>('red');
+expectError<ForegroundColorName>('pink');
+
+// -- Background types
+expectAssignable<BackgroundColorName>('bgRed');
+expectError<BackgroundColorName>('bgPink');
+
+// -- Color types --
+expectAssignable<ColorName>('red');
+expectAssignable<ColorName>('bgRed');
+expectError<ColorName>('hotpink');
+expectError<ColorName>('bgHotpink');

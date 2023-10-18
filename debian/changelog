@@ -1,3 +1,96 @@
+node-chalk (5.2.0-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream version 5.2.0
+
+ -- Yadd <yadd@debian.org>  Mon, 12 Dec 2022 17:44:20 +0100
+
+node-chalk (5.1.2-2) unstable; urgency=medium
+
+  * Team upload
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository-Browse
+  * Fix commonjs files
+
+ -- Yadd <yadd@debian.org>  Fri, 02 Dec 2022 16:39:03 +0100
+
+node-chalk (5.1.2-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream version 5.1.2
+
+ -- Yadd <yadd@debian.org>  Sat, 29 Oct 2022 08:43:20 +0200
+
+node-chalk (5.1.0-2) unstable; urgency=medium
+
+  * Team upload
+  * Back to unstable
+
+ -- Yadd <yadd@debian.org>  Sun, 09 Oct 2022 17:57:03 +0200
+
+node-chalk (5.1.0-1) experimental; urgency=medium
+
+  * Team upload
+  * New upstream version 5.1.0
+  * Refresh patches
+
+ -- Yadd <yadd@debian.org>  Fri, 07 Oct 2022 10:28:27 +0200
+
+node-chalk (5.0.1-2) unstable; urgency=medium
+
+  * Team upload
+  * Rebuild with last ansi-style
+
+ -- Yadd <yadd@debian.org>  Sat, 30 Jul 2022 13:26:42 +0200
+
+node-chalk (5.0.1-1) unstable; urgency=medium
+
+  * Team upload
+  * Declare compliance with policy 4.6.1
+  * New upstream version 5.0.1
+  * Refresh patches
+  * Fix test
+
+ -- Yadd <yadd@debian.org>  Wed, 18 May 2022 16:07:06 +0200
+
+node-chalk (5.0.0-5) unstable; urgency=medium
+
+  * Team upload
+  * Better commonjs export
+
+ -- Yadd <yadd@debian.org>  Fri, 08 Apr 2022 16:45:37 +0200
+
+node-chalk (5.0.0-4) unstable; urgency=medium
+
+  * Team upload
+  * Back to unstable
+
+ -- Yadd <yadd@debian.org>  Wed, 06 Apr 2022 17:11:23 +0200
+
+node-chalk (5.0.0-3) experimental; urgency=medium
+
+  * Team upload
+  * Fix package.json for commonjs
+
+ -- Yadd <yadd@debian.org>  Tue, 29 Mar 2022 10:58:37 +0200
+
+node-chalk (5.0.0-2) experimental; urgency=medium
+
+  * Team upload
+  * Build commonjs files that keep old behavior, then packages which use chalk
+    via "require" will still have chalk-4 behavior
+  * Update test
+
+ -- Yadd <yadd@debian.org>  Sun, 27 Mar 2022 08:53:52 +0200
+
+node-chalk (5.0.0-1) experimental; urgency=medium
+
+  * Team upload
+  * Drop dependency to nodejs
+  * New upstream version 5.0.0
+  * Update test
+
+ -- Yadd <yadd@debian.org>  Wed, 23 Mar 2022 16:15:26 +0100
+
 node-chalk (4.1.2-1) unstable; urgency=medium
 
   * Team upload
