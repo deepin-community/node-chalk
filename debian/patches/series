@@ -1,2 +1,2 @@
-replace-ava-by-tape.diff
-disable-test-that-require-term.diff
+replace-ava-by-tape.patch
+export-commonjs.patch

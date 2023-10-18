@@ -4,3 +4,7 @@
 
 %:
 	dh $@
+
+override_dh_auto_build:
+	rollup -p @rollup/plugin-node-resolve -p '@rollup/plugin-commonjs' -f cjs source/cjs.cjs -o cjs/index.cjs
+	perl -i -pe 's/node:(\w)/$$1/g' cjs/index.cjs

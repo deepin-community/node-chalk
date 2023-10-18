@@ -5,16 +5,19 @@ Section: javascript
 Testsuite: autopkgtest-pkg-nodejs
 Priority: optional
 Build-Depends: debhelper-compat (= 13)
- , dh-sequence-nodejs
+ , dh-sequence-nodejs (>= 0.12.3~)
  , node-ansi-styles <!nocheck>
  , node-escape-string-regexp <!nocheck>
  , node-execa <!nocheck>
  , node-has-ansi <!nocheck>
  , node-resolve-from <!nocheck>
+ , node-rollup-plugin-commonjs
+ , node-rollup-plugin-node-resolve
  , node-strip-ansi <!nocheck>
  , node-supports-color <!nocheck>
  , node-tape <!nocheck>
-Standards-Version: 4.6.0
+ , rollup
+Standards-Version: 4.6.1
 Vcs-Browser: https://salsa.debian.org/js-team/node-chalk
 Vcs-Git: https://salsa.debian.org/js-team/node-chalk.git
 Homepage: https://github.com/chalk/chalk#readme
@@ -23,10 +26,10 @@ Rules-Requires-Root: no
 Package: node-chalk
 Architecture: all
 Depends: ${misc:Depends}
- , node-ansi-styles (>= 3.1.0~)
+ , node-ansi-styles
  , node-escape-string-regexp
- , node-supports-color (>= 4.0.0~)
- , nodejs
+ , node-supports-color
+ , nodejs:any (>= 14)
 Description: Terminal string styling for Node.js
  Chalk is a Node.js module which provides string styling via ANSI escape codes
  without extending String.prototype.

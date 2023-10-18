@@ -1,12 +1,21 @@
-'use strict';
-const styles = require('ansi-styles');
-const chalk = require('..');
+import process from 'node:process';
+import styles from 'ansi-styles';
+import chalk from '../source/index.js';
 
 // Generates screenshot
 for (const key of Object.keys(styles)) {
 	let returnValue = key;
 
-	if (key === 'reset' || key === 'hidden' || key === 'grey') {
+	// We skip `overline` as almost no terminal supports it so we cannot show it off.
+	if (
+		key === 'reset'
+			|| key === 'hidden'
+			|| key === 'grey'
+			|| key === 'bgGray'
+			|| key === 'bgGrey'
+			|| key === 'overline'
+			|| key.endsWith('Bright')
+	) {
 		continue;
 	}
 
